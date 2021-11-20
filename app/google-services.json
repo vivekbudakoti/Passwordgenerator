@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "562112456095",
+    "project_id": "passwordgenerator-15faf",
+    "storage_bucket": "passwordgenerator-15faf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562112456095:android:2674da2e726fdccb6dc9aa",
+        "android_client_info": {
+          "package_name": "com.vivek.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "562112456095-7566o64hmoh137jqj12sikfs1748ihuv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJdfZ8fGSMCxftdtFr6Te4pdX9cn1AWSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "562112456095-7566o64hmoh137jqj12sikfs1748ihuv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
