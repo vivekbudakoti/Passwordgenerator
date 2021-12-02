@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/drawable/rounded_corner.xml" value="0.1953125" />
         <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/layout/activity_main2.xml" value="0.17916666666666667" />
       </map>
     </option>
   </component>
