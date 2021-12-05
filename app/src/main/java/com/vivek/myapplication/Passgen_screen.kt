@@ -1,6 +1,7 @@
 package com.vivek.myapplication
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.os.Build
@@ -12,8 +13,12 @@ import androidx.annotation.RequiresApi
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import kotlin.random.Random
+import android.widget.Spinner
 
-class Passgen_screen : AppCompatActivity() {
+
+
+
+class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener {
 
     lateinit var txt_password: TextView
     lateinit var btn_generate : Button
@@ -22,8 +27,7 @@ class Passgen_screen : AppCompatActivity() {
     lateinit var myClipboard : ClipboardManager
     lateinit var myClip: ClipData
     lateinit var copyText : String
-    lateinit var radiogroup : RadioGroup
-    lateinit var radiobutton : RadioButton
+    var selectId : String ="6"
 
 
     @SuppressLint("SetTextI18n")
@@ -34,12 +38,28 @@ class Passgen_screen : AppCompatActivity() {
 
         txt_password = findViewById(R.id.txt_Password)
         btn_generate = findViewById(R.id.btn_Generate)
-        chk_6_pass = findViewById(R.id.chk_6digi_pass)
         btn_copy = findViewById(R.id.btn_copy)
-        radiogroup = findViewById(R.id.rg_pass_dig)
         btn_copy.visibility = View.INVISIBLE
 
         myClipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+
+
+        val spinner = findViewById<View>(R.id.spinner2) as Spinner
+
+        spinner.onItemSelectedListener = this
+// Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.pass_list,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            spinner.adapter = adapter
+        }
+
+
 
         btn_copy.setOnClickListener {
             myClip = ClipData.newPlainText("text", copyText)
@@ -54,12 +74,19 @@ class Passgen_screen : AppCompatActivity() {
         btn_generate.setOnClickListener {
             btn_copy.visibility = View.VISIBLE
             btn_copy.isVisible
-            var selectedID = radiogroup.checkedRadioButtonId
-            radiobutton = findViewById(selectedID)
-            Toast.makeText(this, radiobutton.getText(),Toast.LENGTH_SHORT).show();
-            if(chk_6_pass.isChecked){
+
+            if(selectId == "6"){
                 PassCodeGenerate_6()
 
+            }
+            else if(selectId == "10"){
+                PassCodeGenerate_10()
+            }
+             else if(selectId == "12"){
+                PassCodeGenerate_12()
+            }
+             else if(selectId == "14"){
+                PassCodeGenerate_14()
             }
             else{
                PassCodeGenerate_8()
@@ -84,19 +111,48 @@ class Passgen_screen : AppCompatActivity() {
    @RequiresApi(Build.VERSION_CODES.O)
    fun PassCodeGenerate_6()  {
 
-       var sstring = "${Pass_Capital()}${Pass_Small()}${Pass_Small()}${Pass_Num()}${Pass_Special()}${Pass_Num()}"
+       var sstring = "${Pass_Capital()}${Pass_Small()}${Pass_Capital()}${Pass_Num()}${Pass_Special()}${Pass_Num()}"
        var ss =shuffle(sstring)
       txt_password.text = ss
        copyText = ss.toString()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun PassCodeGenerate_8()  {
 
-        var sstring = "${Pass_Capital()}${Pass_Special()}${Pass_Small()}${Pass_Num()}${Pass_Small()}${Pass_Num()}${Pass_Special()}${Pass_Num()}"
+        var sstring = "${Pass_Capital()}${Pass_Small()}${Pass_Capital()}${Pass_Num()}${Pass_Special()}${Pass_Num()}${Pass_Special()}${Pass_Small()}"
         var ss =shuffle(sstring)
         txt_password.text = ss
         copyText = ss.toString()
-        // println("Current Date is: $formatted")
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun PassCodeGenerate_10()  {
+
+        var sstring = "${Pass_Capital()}${Pass_Small()}${Pass_Capital()}${Pass_Num()}${Pass_Special()}${Pass_Num()}${Pass_Special()}${Pass_Small()}${Pass_Num()}${Pass_Small()}"
+        var ss =shuffle(sstring)
+        txt_password.text = ss
+        copyText = ss.toString()
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun PassCodeGenerate_12()  {
+
+        var sstring = "${Pass_Capital()}${Pass_Special()}${Pass_Capital()}${Pass_Small()}${Pass_Capital()}${Pass_Num()}${Pass_Special()}${Pass_Num()}${Pass_Special()}${Pass_Small()}${Pass_Num()}${Pass_Small()}"
+        var ss =shuffle(sstring)
+        txt_password.text = ss
+        copyText = ss.toString()
+
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun PassCodeGenerate_14()  {
+
+        var sstring = "${Pass_Num()}${Pass_Small()}${Pass_Capital()}${Pass_Special()}${Pass_Capital()}${Pass_Small()}${Pass_Capital()}${Pass_Num()}${Pass_Special()}${Pass_Num()}${Pass_Special()}${Pass_Small()}${Pass_Num()}${Pass_Small()}"
+        var ss =shuffle(sstring)
+        txt_password.text = ss
+        copyText = ss.toString()
 
     }
 
@@ -127,5 +183,15 @@ class Passgen_screen : AppCompatActivity() {
     fun Pass_Num(): Int{
          return Random.nextInt(0,10)
     }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+       val items = parent?.getItemAtPosition(position).toString()
+       selectId = items
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+
+    }
+
 
 }

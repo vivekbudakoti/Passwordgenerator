@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Password Generator</string>
+
+    <string-array name="pass_list">
+        <item>6</item>
+        <item>8</item>
+        <item>10</item>
+        <item>12</item>
+        <item>14</item>
+
+    </string-array>
+
 </resources>

@@ -30,57 +30,28 @@
         />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:textAlignment="center"
-       >
-
-        <CheckBox
-            android:id="@+id/chk_6digi_pass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="6 digit password"
-            android:layout_marginLeft="80dp"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            />
-
-
-    </LinearLayout>
-
-    <RadioGroup
-        android:id="@+id/rg_pass_dig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       >
+        android:orientation="horizontal"
+        android:layout_gravity="center">
 
-        <RadioButton
-            android:id="@+id/rb_6_dig"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="6 digit password"
-            android:textSize="20sp"
-            android:layout_marginLeft="80dp"
-            />
-        <RadioButton
-            android:id="@+id/rb_8_dig"
-            android:layout_width="wrap_content"
+            android:text="Select Password Length"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_gravity="center"/>
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="8 digit password"
-            android:textSize="20sp"
-            android:layout_marginLeft="80dp"
-            />
+            android:layout_below="@+id/spinner"
+            android:layout_margin="10dp"
 
-        <RadioButton
-            android:id="@+id/rb_10_dig"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10 digit password"
-            android:textSize="20sp"
-            android:layout_marginLeft="80dp"
             />
-    </RadioGroup>
+    </LinearLayout>
+
     <Button
         android:id="@+id/btn_Generate"
         android:layout_width="match_parent"
@@ -96,5 +67,9 @@
         android:layout_margin="15dp"
         android:text="Copy"
         />
+
+
+
+
 
 </LinearLayout>
