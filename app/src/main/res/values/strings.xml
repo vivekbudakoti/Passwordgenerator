@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Password Generator</string>
+    <string name="navigation_open">Open navigation Drawer</string>
+    <string name="navigation_close">Close navigation Drawer</string>
 
     <string-array name="pass_list">
         <item>6</item>

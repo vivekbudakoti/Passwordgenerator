@@ -14,8 +14,11 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import kotlin.random.Random
 import android.widget.Spinner
-
-
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.ActionBarContainer
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
 
 
 class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener {
@@ -29,6 +32,10 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
     lateinit var copyText : String
     var selectId : String ="6"
 
+    lateinit var toolbar : Toolbar
+    lateinit var drawerlayout : DrawerLayout
+    lateinit var navigation : NavigationView
+
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
@@ -40,6 +47,18 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
         btn_generate = findViewById(R.id.btn_Generate)
         btn_copy = findViewById(R.id.btn_copy)
         btn_copy.visibility = View.INVISIBLE
+
+
+        //Toolbar setting
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+        //Hamburger icon setting
+        drawerlayout = findViewById(R.id.Drawer)
+        navigation = findViewById(R.id.navigation)
+        var toggle : ActionBarDrawerToggle = ActionBarDrawerToggle(this,drawerlayout,toolbar,R.string.navigation_open,R.string.navigation_close)
+        drawerlayout.addDrawerListener(toggle)
+        toggle.syncState()
 
         myClipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
 

@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
         btn.setOnClickListener {
             startActivity(Intent(this, Passgen_screen::class.java))
-         //   signIn()
+          //  signIn()
         }
     }
 
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
-                Toast.makeText(this,"Failed__1",Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"${e}",Toast.LENGTH_LONG).show()
                 Log.w("Sign in activity", "Google sign in failed", e)
             }
         }
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
                     Log.d("Sign in activity", "signInWithCredential:success")
                     val user = mAuth.currentUser
                     Toast.makeText(this,"Succefullll",Toast.LENGTH_LONG).show()
-                   // startActivity(Intent(this, MainActivity2::class.java))
+                   // startActivity(Intent(this, Passgen_screen::class.java))
 //                    updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
