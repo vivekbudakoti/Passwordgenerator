@@ -7,6 +7,7 @@ import android.content.ClipboardManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
@@ -35,9 +36,10 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
     lateinit var toolbar : Toolbar
     lateinit var drawerlayout : DrawerLayout
     lateinit var navigation : NavigationView
+    lateinit var toggle : ActionBarDrawerToggle
 
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "RestrictedApi")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,9 +58,22 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
         //Hamburger icon setting
         drawerlayout = findViewById(R.id.Drawer)
         navigation = findViewById(R.id.navigation)
-        var toggle : ActionBarDrawerToggle = ActionBarDrawerToggle(this,drawerlayout,toolbar,R.string.navigation_open,R.string.navigation_close)
+         toggle= ActionBarDrawerToggle(this,drawerlayout,R.string.navigation_open,R.string.navigation_close)
         drawerlayout.addDrawerListener(toggle)
         toggle.syncState()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        navigation.setNavigationItemSelectedListener {
+
+            when(it.itemId){
+                R.id.generate -> Toast.makeText(this,"Generate clicked",Toast.LENGTH_SHORT).show()
+                R.id.save -> Toast.makeText(this,"Save clicked",Toast.LENGTH_SHORT).show()
+                R.id.history -> Toast.makeText(this,"history clicked",Toast.LENGTH_SHORT).show()
+                R.id.encryption -> Toast.makeText(this,"encryption clicked",Toast.LENGTH_SHORT).show()
+                R.id.logout -> Toast.makeText(this,"Logout clicked",Toast.LENGTH_SHORT).show()
+            }
+            true
+
+        }
 
         myClipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
 
@@ -203,6 +218,7 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
          return Random.nextInt(0,10)
     }
 
+    //for working of selecting item on spinner
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
        val items = parent?.getItemAtPosition(position).toString()
        selectId = items
@@ -212,5 +228,12 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
 
     }
 
+    //overriding this method for the working of items in hamburger icon
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (toggle.onOptionsItemSelected(item)){
+           return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 }
