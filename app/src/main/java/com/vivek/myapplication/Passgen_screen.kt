@@ -24,10 +24,10 @@ import com.google.android.material.navigation.NavigationView
 
 class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener {
 
-    lateinit var txt_password: TextView
+    lateinit var edt_password : EditText
+    lateinit var img_copy_clip : ImageView
+
     lateinit var btn_generate : Button
-    lateinit var chk_6_pass : CheckBox
-    lateinit var btn_copy : Button
     lateinit var myClipboard : ClipboardManager
     lateinit var myClip: ClipData
     lateinit var copyText : String
@@ -45,10 +45,9 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_passgen_screen)
 
-        txt_password = findViewById(R.id.txt_Password)
         btn_generate = findViewById(R.id.btn_Generate)
-        btn_copy = findViewById(R.id.btn_copy)
-        btn_copy.visibility = View.INVISIBLE
+        edt_password = findViewById(R.id.edt_pass)
+        img_copy_clip = findViewById(R.id.img_copy_clip)
 
 
         //Toolbar setting
@@ -64,8 +63,9 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         navigation.setNavigationItemSelectedListener {
 
+
             when(it.itemId){
-                R.id.generate -> Toast.makeText(this,"Generate clicked",Toast.LENGTH_SHORT).show()
+                R.id.generate -> Toast.makeText(applicationContext,"Generate clicked",Toast.LENGTH_SHORT).show()
                 R.id.save -> Toast.makeText(this,"Save clicked",Toast.LENGTH_SHORT).show()
                 R.id.history -> Toast.makeText(this,"history clicked",Toast.LENGTH_SHORT).show()
                 R.id.encryption -> Toast.makeText(this,"encryption clicked",Toast.LENGTH_SHORT).show()
@@ -95,7 +95,8 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
 
 
 
-        btn_copy.setOnClickListener {
+        //CopyText button
+        img_copy_clip.setOnClickListener{
             myClip = ClipData.newPlainText("text", copyText)
             myClipboard.setPrimaryClip(myClip)
 
@@ -106,8 +107,6 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
 
 
         btn_generate.setOnClickListener {
-            btn_copy.visibility = View.VISIBLE
-            btn_copy.isVisible
 
             if(selectId == "6"){
                 PassCodeGenerate_6()
@@ -147,7 +146,7 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
 
        var sstring = "${Pass_Capital()}${Pass_Small()}${Pass_Capital()}${Pass_Num()}${Pass_Special()}${Pass_Num()}"
        var ss =shuffle(sstring)
-      txt_password.text = ss
+       edt_password.setText(ss, TextView.BufferType.EDITABLE)
        copyText = ss.toString()
     }
 
@@ -156,7 +155,7 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
 
         var sstring = "${Pass_Capital()}${Pass_Small()}${Pass_Capital()}${Pass_Num()}${Pass_Special()}${Pass_Num()}${Pass_Special()}${Pass_Small()}"
         var ss =shuffle(sstring)
-        txt_password.text = ss
+        edt_password.setText(ss, TextView.BufferType.EDITABLE)
         copyText = ss.toString()
 
     }
@@ -166,7 +165,7 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
 
         var sstring = "${Pass_Capital()}${Pass_Small()}${Pass_Capital()}${Pass_Num()}${Pass_Special()}${Pass_Num()}${Pass_Special()}${Pass_Small()}${Pass_Num()}${Pass_Small()}"
         var ss =shuffle(sstring)
-        txt_password.text = ss
+        edt_password.setText(ss, TextView.BufferType.EDITABLE)
         copyText = ss.toString()
 
     }
@@ -176,7 +175,7 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
 
         var sstring = "${Pass_Capital()}${Pass_Special()}${Pass_Capital()}${Pass_Small()}${Pass_Capital()}${Pass_Num()}${Pass_Special()}${Pass_Num()}${Pass_Special()}${Pass_Small()}${Pass_Num()}${Pass_Small()}"
         var ss =shuffle(sstring)
-        txt_password.text = ss
+        edt_password.setText(ss, TextView.BufferType.EDITABLE)
         copyText = ss.toString()
 
     }
@@ -185,7 +184,7 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
 
         var sstring = "${Pass_Num()}${Pass_Small()}${Pass_Capital()}${Pass_Special()}${Pass_Capital()}${Pass_Small()}${Pass_Capital()}${Pass_Num()}${Pass_Special()}${Pass_Num()}${Pass_Special()}${Pass_Small()}${Pass_Num()}${Pass_Small()}"
         var ss =shuffle(sstring)
-        txt_password.text = ss
+        edt_password.setText(ss, TextView.BufferType.EDITABLE)
         copyText = ss.toString()
 
     }
