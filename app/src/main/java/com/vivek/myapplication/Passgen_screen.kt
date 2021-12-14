@@ -20,6 +20,8 @@ import androidx.appcompat.widget.ActionBarContainer
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 
 
 class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener {
@@ -30,7 +32,6 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
     lateinit var btn_generate : Button
     lateinit var myClipboard : ClipboardManager
     lateinit var myClip: ClipData
-    lateinit var copyText : String
     var selectId : String ="6"
 
     lateinit var toolbar : Toolbar
@@ -45,6 +46,7 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_passgen_screen)
 
+
         btn_generate = findViewById(R.id.btn_Generate)
         edt_password = findViewById(R.id.edt_pass)
         img_copy_clip = findViewById(R.id.img_copy_clip)
@@ -53,14 +55,18 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
         //Toolbar setting
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         //Hamburger icon setting
+
+
         drawerlayout = findViewById(R.id.Drawer)
         navigation = findViewById(R.id.navigation)
          toggle= ActionBarDrawerToggle(this,drawerlayout,R.string.navigation_open,R.string.navigation_close)
         drawerlayout.addDrawerListener(toggle)
         toggle.syncState()
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         navigation.setNavigationItemSelectedListener {
 
 
@@ -78,6 +84,8 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
         myClipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
 
 
+
+        //Setting up the dropdown menu
         val spinner = findViewById<View>(R.id.spinner2) as Spinner
 
         spinner.onItemSelectedListener = this
@@ -97,10 +105,10 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
 
         //CopyText button
         img_copy_clip.setOnClickListener{
-            myClip = ClipData.newPlainText("text", copyText)
+            myClip = ClipData.newPlainText("text", edt_password.text.toString())
             myClipboard.setPrimaryClip(myClip)
 
-            Toast.makeText(this,"Password: \"$copyText\"\ncopied successfully",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"Password: \"${edt_password.text.toString()}\"\ncopied successfully",Toast.LENGTH_SHORT).show()
         }
 
 
@@ -147,7 +155,7 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
        var sstring = "${Pass_Capital()}${Pass_Small()}${Pass_Capital()}${Pass_Num()}${Pass_Special()}${Pass_Num()}"
        var ss =shuffle(sstring)
        edt_password.setText(ss, TextView.BufferType.EDITABLE)
-       copyText = ss.toString()
+
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -156,7 +164,7 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
         var sstring = "${Pass_Capital()}${Pass_Small()}${Pass_Capital()}${Pass_Num()}${Pass_Special()}${Pass_Num()}${Pass_Special()}${Pass_Small()}"
         var ss =shuffle(sstring)
         edt_password.setText(ss, TextView.BufferType.EDITABLE)
-        copyText = ss.toString()
+
 
     }
 
@@ -166,7 +174,7 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
         var sstring = "${Pass_Capital()}${Pass_Small()}${Pass_Capital()}${Pass_Num()}${Pass_Special()}${Pass_Num()}${Pass_Special()}${Pass_Small()}${Pass_Num()}${Pass_Small()}"
         var ss =shuffle(sstring)
         edt_password.setText(ss, TextView.BufferType.EDITABLE)
-        copyText = ss.toString()
+
 
     }
 
@@ -176,7 +184,7 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
         var sstring = "${Pass_Capital()}${Pass_Special()}${Pass_Capital()}${Pass_Small()}${Pass_Capital()}${Pass_Num()}${Pass_Special()}${Pass_Num()}${Pass_Special()}${Pass_Small()}${Pass_Num()}${Pass_Small()}"
         var ss =shuffle(sstring)
         edt_password.setText(ss, TextView.BufferType.EDITABLE)
-        copyText = ss.toString()
+
 
     }
     @RequiresApi(Build.VERSION_CODES.O)
@@ -185,7 +193,7 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
         var sstring = "${Pass_Num()}${Pass_Small()}${Pass_Capital()}${Pass_Special()}${Pass_Capital()}${Pass_Small()}${Pass_Capital()}${Pass_Num()}${Pass_Special()}${Pass_Num()}${Pass_Special()}${Pass_Small()}${Pass_Num()}${Pass_Small()}"
         var ss =shuffle(sstring)
         edt_password.setText(ss, TextView.BufferType.EDITABLE)
-        copyText = ss.toString()
+
 
     }
 
@@ -216,6 +224,7 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
     fun Pass_Num(): Int{
          return Random.nextInt(0,10)
     }
+
 
     //for working of selecting item on spinner
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
