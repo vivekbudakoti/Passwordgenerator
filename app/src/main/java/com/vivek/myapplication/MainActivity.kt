@@ -22,13 +22,19 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mAuth : FirebaseAuth
     private lateinit var googleSignInClient : GoogleSignInClient
-    private lateinit var btn : Button
+    private lateinit var btn_login : Button
+    private lateinit var btn_register : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btn = findViewById(R.id.btn_signin)
+        btn_login = findViewById(R.id.btn_signin)
+        btn_register = findViewById(R.id.btn_register)
+
+        btn_register.setOnClickListener {
+            startActivity(Intent(this,Register::class.java))
+        }
 
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -40,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
 
-        btn.setOnClickListener {
+        btn_login.setOnClickListener {
             startActivity(Intent(this, Passgen_screen::class.java))
           //  signIn()
         }
