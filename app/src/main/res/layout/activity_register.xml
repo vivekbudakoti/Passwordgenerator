@@ -57,6 +57,40 @@
         android:padding="10dp"
         android:inputType="textVisiblePassword"
         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="30dp"
+        android:orientation="horizontal"
+        >
+
+        <EditText
+            android:id="@+id/edt_dob"
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="wrap_content"
+            android:hint="DOB(dd/mm/yy)"
+            android:background="#ebebe0"
+            android:layout_marginTop="30dp"
+
+            android:layout_marginLeft="30dp"
+            android:padding="10dp"
+            android:inputType="date"
+            />
+        <ImageView
+            android:id="@+id/img_calender_logo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+
+            android:background="@drawable/ic_baseline_calendar_today_24" />
+    </LinearLayout>
+
+
+
     <Button
         android:id="@+id/btn_reg_register"
         android:layout_width="match_parent"
