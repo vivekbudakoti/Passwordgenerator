@@ -65,18 +65,16 @@
         android:orientation="horizontal"
         >
 
-        <EditText
+        <TextView
             android:id="@+id/edt_dob"
             android:layout_width="0dp"
             android:layout_weight="5"
             android:layout_height="wrap_content"
-            android:hint="DOB(dd/mm/yy)"
             android:background="#ebebe0"
+            android:text="Select DOB >>>>"
             android:layout_marginTop="30dp"
-
             android:layout_marginLeft="30dp"
             android:padding="10dp"
-            android:inputType="date"
             />
         <ImageView
             android:id="@+id/img_calender_logo"
