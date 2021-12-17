@@ -47,8 +47,8 @@ class MainActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         btn_login.setOnClickListener {
-            startActivity(Intent(this, Passgen_screen::class.java))
-          //  signIn()
+           // startActivity(Intent(this, Passgen_screen::class.java))
+            signIn()
         }
     }
 
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
                     Log.d("Sign in activity", "signInWithCredential:success")
                     val user = mAuth.currentUser
                     Toast.makeText(this,"Succefullll",Toast.LENGTH_LONG).show()
-                   // startActivity(Intent(this, Passgen_screen::class.java))
+                    startActivity(Intent(this, Register::class.java))
 //                    updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
