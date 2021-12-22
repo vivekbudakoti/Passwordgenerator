@@ -110,17 +110,18 @@ class MainActivity : AppCompatActivity() {
 
                     val myEdit = sharedPreferences.edit()
                     myEdit.putBoolean("loggedin", true)
+                    myEdit.putString("username",name)
                     myEdit.commit()
 
 
                     Toast.makeText(this,"Succefullll $name",Toast.LENGTH_LONG).show()
                     startActivity(Intent(this, Register::class.java))
-//                    updateUI(user)
+
                 } else {
                     // If sign in fails, display a message to the user.
                     Toast.makeText(this,"Failed",Toast.LENGTH_LONG).show()
                     Log.w("Sign in activity", "signInWithCredential:failure", task.exception)
-//                    updateUI(null)
+
                 }
             }
     }

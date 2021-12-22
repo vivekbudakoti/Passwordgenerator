@@ -25,6 +25,7 @@
         android:textColor="@color/black"/>
 
     <EditText
+        android:id="@+id/edt_register_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter Name"
@@ -35,6 +36,7 @@
         />
 
     <EditText
+        android:id="@+id/edt_register_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Phone Number"
@@ -47,6 +49,7 @@
         />
 
     <EditText
+        android:id="@+id/edt_register_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
