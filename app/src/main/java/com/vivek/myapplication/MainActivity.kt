@@ -1,5 +1,6 @@
 package com.vivek.myapplication
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,6 +14,10 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.ktx.Firebase
+import android.content.SharedPreferences
+
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,10 +29,23 @@ class MainActivity : AppCompatActivity() {
     private lateinit var googleSignInClient : GoogleSignInClient
     private lateinit var btn_login : Button
     private lateinit var btn_register : Button
+    var loginid = false
 
+    @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //Reading value of loggedin to check
+        val sh = getSharedPreferences("MySharedPref", MODE_APPEND)
+        loginid = sh.getBoolean("loggedin",false)
+
+
+        if(loginid == true){
+            startActivity(Intent(this,Passgen_screen::class.java))
+        }
+
         setContentView(R.layout.activity_main)
+
 
         btn_login = findViewById(R.id.btn_signin)
         btn_register = findViewById(R.id.btn_register)
@@ -84,7 +102,18 @@ class MainActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("Sign in activity", "signInWithCredential:success")
                     val user = mAuth.currentUser
-                    Toast.makeText(this,"Succefullll",Toast.LENGTH_LONG).show()
+                    val name = user?.displayName
+
+                    //Sharedprefernce task for saving the loggedin status
+
+                    val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
+
+                    val myEdit = sharedPreferences.edit()
+                    myEdit.putBoolean("loggedin", true)
+                    myEdit.commit()
+
+
+                    Toast.makeText(this,"Succefullll $name",Toast.LENGTH_LONG).show()
                     startActivity(Intent(this, Register::class.java))
 //                    updateUI(user)
                 } else {
