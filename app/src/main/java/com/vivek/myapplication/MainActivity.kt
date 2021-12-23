@@ -15,8 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.ktx.Firebase
 import android.content.SharedPreferences
-
-
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var googleSignInClient : GoogleSignInClient
     private lateinit var btn_login : Button
     private lateinit var btn_register : Button
+
     var loginid = false
 
     @SuppressLint("WrongConstant")
@@ -45,7 +45,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         setContentView(R.layout.activity_main)
-
 
         btn_login = findViewById(R.id.btn_signin)
         btn_register = findViewById(R.id.btn_register)
@@ -103,6 +102,7 @@ class MainActivity : AppCompatActivity() {
                     Log.d("Sign in activity", "signInWithCredential:success")
                     val user = mAuth.currentUser
                     val name = user?.displayName
+                    val id = user?.uid
 
                     //Sharedprefernce task for saving the loggedin status
 
@@ -111,6 +111,7 @@ class MainActivity : AppCompatActivity() {
                     val myEdit = sharedPreferences.edit()
                     myEdit.putBoolean("loggedin", true)
                     myEdit.putString("username",name)
+                    myEdit.putString("userId", id.toString())
                     myEdit.commit()
 
 

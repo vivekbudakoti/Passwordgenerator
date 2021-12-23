@@ -3,19 +3,20 @@ package com.vivek.myapplication
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.app.DatePickerDialog
-import java.util.*
-import android.app.TimePickerDialog
 import android.content.Intent
-import android.text.format.DateFormat.is24HourFormat
 import android.widget.*
-import java.text.DateFormat
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 class Register : AppCompatActivity() {
 
     lateinit var  btn_reg : Button
     lateinit var edt_name :EditText
+    lateinit var edt_phone :EditText
+    lateinit var edt_pass :EditText
+    val db = Firebase.firestore
 
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,16 +24,37 @@ class Register : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         edt_name = findViewById(R.id.edt_register_name)
+        edt_phone = findViewById(R.id.edt_register_phone)
+        edt_pass  = findViewById(R.id.edt_register_pass)
 
         val sh = getSharedPreferences("MySharedPref", MODE_APPEND)
         val username = sh.getString("username","")
+        val userId = sh.getString("userId","")
         btn_reg = findViewById(R.id.btn_reg_register)
 
         edt_name.setText(username,TextView.BufferType.EDITABLE)
 
+
+
         btn_reg.setOnClickListener {
 
-            startActivity(Intent(this,Passgen_screen::class.java))
+            //Firebase firestore data here
+            val user = hashMapOf(
+                "id" to userId,
+                "Phone Number" to edt_phone.text.toString(),
+                "Password" to edt_pass.text.toString()
+            )
+
+// Add a new document with a generated ID
+            db.collection("PassData")
+                .add(user)
+                .addOnSuccessListener {
+                   Toast.makeText(this,"Data Uploaded Successful",Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this,Passgen_screen::class.java))
+                }
+                .addOnFailureListener {e->
+                    Toast.makeText(this,"$e",Toast.LENGTH_SHORT).show()
+                }
 
         }
 
