@@ -13,9 +13,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.ktx.Firebase
-import android.content.SharedPreferences
-import com.google.firebase.firestore.FirebaseFirestore
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mAuth : FirebaseAuth
     private lateinit var googleSignInClient : GoogleSignInClient
     private lateinit var btn_login : Button
-    private lateinit var btn_register : Button
+
 
     var loginid = false
 
@@ -35,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //Reading value of loggedin to check
+        //Shared prefernce Reading value of loggedin to check
         val sh = getSharedPreferences("MySharedPref", MODE_APPEND)
         loginid = sh.getBoolean("loggedin",false)
 
@@ -47,11 +45,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         btn_login = findViewById(R.id.btn_signin)
-        btn_register = findViewById(R.id.btn_register)
-
-        btn_register.setOnClickListener {
-            startActivity(Intent(this,Register::class.java))
-        }
 
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -115,12 +108,12 @@ class MainActivity : AppCompatActivity() {
                     myEdit.commit()
 
 
-                    Toast.makeText(this,"Succefullll $name",Toast.LENGTH_LONG).show()
+                    Toast.makeText(this,"You have Successfully logged in",Toast.LENGTH_LONG).show()
                     startActivity(Intent(this, Register::class.java))
 
                 } else {
                     // If sign in fails, display a message to the user.
-                    Toast.makeText(this,"Failed",Toast.LENGTH_LONG).show()
+                    Toast.makeText(this,"Login failed. Try again!",Toast.LENGTH_LONG).show()
                     Log.w("Sign in activity", "signInWithCredential:failure", task.exception)
 
                 }

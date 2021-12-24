@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.widget.*
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -15,7 +14,6 @@ class Register : AppCompatActivity() {
     lateinit var  btn_reg : Button
     lateinit var edt_name :EditText
     lateinit var edt_phone :EditText
-    lateinit var edt_pass :EditText
     val db = Firebase.firestore
 
     @SuppressLint("WrongConstant")
@@ -25,7 +23,6 @@ class Register : AppCompatActivity() {
 
         edt_name = findViewById(R.id.edt_register_name)
         edt_phone = findViewById(R.id.edt_register_phone)
-        edt_pass  = findViewById(R.id.edt_register_pass)
 
         val sh = getSharedPreferences("MySharedPref", MODE_APPEND)
         val username = sh.getString("username","")
@@ -42,10 +39,9 @@ class Register : AppCompatActivity() {
             val user = hashMapOf(
                 "id" to userId,
                 "Phone Number" to edt_phone.text.toString(),
-                "Password" to edt_pass.text.toString()
             )
 
-// Add a new document with a generated ID
+         // Add a new document with a generated ID
             db.collection("PassData")
                 .add(user)
                 .addOnSuccessListener {
@@ -53,7 +49,7 @@ class Register : AppCompatActivity() {
                     startActivity(Intent(this,Passgen_screen::class.java))
                 }
                 .addOnFailureListener {e->
-                    Toast.makeText(this,"$e",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"Failure. Try Again!",Toast.LENGTH_SHORT).show()
                 }
 
         }

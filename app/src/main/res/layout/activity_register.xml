@@ -48,19 +48,6 @@
         android:inputType="phone"
         />
 
-    <EditText
-        android:id="@+id/edt_register_pass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
-        android:background="#ebebe0"
-        android:padding="10dp"
-        android:inputType="textVisiblePassword"
-        />
-
     <Button
         android:id="@+id/btn_reg_register"
         android:layout_width="match_parent"

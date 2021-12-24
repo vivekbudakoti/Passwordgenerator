@@ -1,7 +1,6 @@
 package com.vivek.myapplication
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.os.Build
@@ -11,17 +10,12 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import kotlin.random.Random
 import android.widget.Spinner
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.widget.ActionBarContainer
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
-import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
 
 
 class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener {
