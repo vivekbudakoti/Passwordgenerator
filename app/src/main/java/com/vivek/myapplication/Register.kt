@@ -43,7 +43,8 @@ class Register : AppCompatActivity() {
 
          // Add a new document with a generated ID
             db.collection("PassData")
-                .add(user)
+                .document(userId.toString())
+                .set(user)
                 .addOnSuccessListener {
                    Toast.makeText(this,"Data Uploaded Successful",Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this,Passgen_screen::class.java))
