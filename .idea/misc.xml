@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.2203125" />
         <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/drawable/rounded_corner.xml" value="0.1953125" />
+        <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/layout/activity_login_page.xml" value="0.15942028985507245" />
         <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/layout/activity_main2.xml" value="0.17916666666666667" />
         <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/layout/activity_passgen_screen.xml" value="0.18" />
+        <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/layout/activity_register.xml" value="0.2" />
         <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/layout/header.xml" value="0.18" />
         <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/layout/passgen_screen.xml" value="0.11865942028985507" />
         <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/menu/sidemenu.xml" value="0.25" />

@@ -12,11 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PasswordGenerator">
 
-
+        <activity
+            android:name=".Register"
+            android:exported="false" />
         <activity
             android:name=".Passgen_screen"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true"
