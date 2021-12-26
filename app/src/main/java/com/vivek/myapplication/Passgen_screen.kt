@@ -33,7 +33,6 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
     lateinit var copyText : String
     var selectId : String ="6"
 
-    lateinit var toolbar : Toolbar
     lateinit var drawerlayout : DrawerLayout
     lateinit var navigation : NavigationView
     lateinit var toggle : ActionBarDrawerToggle
@@ -50,9 +49,6 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
         img_copy_clip = findViewById(R.id.img_copy_clip)
 
 
-        //Toolbar setting
-        toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
 
         //Hamburger icon setting
         drawerlayout = findViewById(R.id.Drawer)
@@ -71,6 +67,7 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
                 R.id.encryption -> Toast.makeText(this,"encryption clicked",Toast.LENGTH_SHORT).show()
                 R.id.logout -> Toast.makeText(this,"Logout clicked",Toast.LENGTH_SHORT).show()
             }
+            drawerlayout.closeDrawers()
             true
 
         }
@@ -224,15 +221,7 @@ class Passgen_screen : AppCompatActivity(),  AdapterView.OnItemSelectedListener 
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
-
-    }
-
-    //overriding this method for the working of items in hamburger icon
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (toggle.onOptionsItemSelected(item)){
-           return true
-        }
-        return super.onOptionsItemSelected(item)
+        selectId="6"
     }
 
 }

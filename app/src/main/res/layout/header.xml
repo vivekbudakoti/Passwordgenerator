@@ -4,14 +4,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/purple_700"
-    android:layout_marginTop="30dp">
+    android:layout_marginTop="?actionBarSize">
 
     <ImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:src="@mipmap/ic_launcher"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="36dp"
         />
     <TextView
         android:layout_width="wrap_content"
