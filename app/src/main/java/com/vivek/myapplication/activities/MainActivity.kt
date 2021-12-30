@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
 
         if(loginid == true){
             startActivity(Intent(this, Passgen_screen::class.java))
+            finishAffinity()
         }
 
         setContentView(R.layout.activity_main)
