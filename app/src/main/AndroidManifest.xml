@@ -13,13 +13,13 @@
         android:theme="@style/Theme.PasswordGenerator">
 
         <activity
-            android:name=".Register"
+            android:name=".activities.Register"
             android:exported="false" />
         <activity
-            android:name=".Passgen_screen"
+            android:name=".activities.Passgen_screen"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>

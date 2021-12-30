@@ -10,9 +10,12 @@
         <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/layout/activity_main2.xml" value="0.17916666666666667" />
         <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/layout/activity_passgen_screen.xml" value="0.18" />
         <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/layout/activity_register.xml" value="0.2" />
+        <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/layout/fragment_encrypt.xml" value="0.15307971014492755" />
         <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/layout/fragment_encryption.xml" value="0.18" />
         <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/layout/fragment_generate.xml" value="0.20416666666666666" />
         <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/layout/fragment_generate_fragment.xml" value="0.20416666666666666" />
+        <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/layout/fragment_history.xml" value="0.15307971014492755" />
+        <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/layout/fragment_save.xml" value="0.14764492753623187" />
         <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/layout/header.xml" value="0.18" />
         <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/layout/passgen_screen.xml" value="0.11865942028985507" />
         <entry key="..\:/ProjectsAndroid/PasswordGenerator/app/src/main/res/menu/sidemenu.xml" value="0.25" />

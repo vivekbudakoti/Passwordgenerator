@@ -1,4 +1,4 @@
-package com.vivek.myapplication
+package com.vivek.myapplication.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -13,7 +13,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-
+import com.vivek.myapplication.R
 
 
 class MainActivity : AppCompatActivity() {
@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
 
         if(loginid == true){
-            startActivity(Intent(this,Passgen_screen::class.java))
+            startActivity(Intent(this, Passgen_screen::class.java))
         }
 
         setContentView(R.layout.activity_main)

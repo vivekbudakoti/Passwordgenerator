@@ -1,4 +1,4 @@
-package com.vivek.myapplication
+package com.vivek.myapplication.activities
 
 import android.annotation.SuppressLint
 import android.os.Build
@@ -11,8 +11,11 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import com.vivek.myapplication.R
 import com.vivek.myapplication.fragments.Generate_fragment
-
+import com.vivek.myapplication.fragments.encrypt_fragment
+import com.vivek.myapplication.fragments.history_fragment
+import com.vivek.myapplication.fragments.save_fragment
 
 
 class Passgen_screen : AppCompatActivity() {
@@ -43,7 +46,10 @@ class Passgen_screen : AppCompatActivity() {
         //Hamburger icon setting
         drawerlayout = findViewById(R.id.Drawer)
         navigation = findViewById(R.id.navigation)
-         toggle= ActionBarDrawerToggle(this,drawerlayout,R.string.navigation_open,R.string.navigation_close)
+         toggle= ActionBarDrawerToggle(this,drawerlayout,
+             R.string.navigation_open,
+             R.string.navigation_close
+         )
         drawerlayout.addDrawerListener(toggle)
         toggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -64,10 +70,36 @@ class Passgen_screen : AppCompatActivity() {
                         .commit()
                     Toast.makeText(applicationContext,"Generate clicked",Toast.LENGTH_SHORT).show()
                 }
-                R.id.save -> Toast.makeText(this,"Save clicked",Toast.LENGTH_SHORT).show()
-                R.id.history -> Toast.makeText(this,"history clicked",Toast.LENGTH_SHORT).show()
-                R.id.encryption -> Toast.makeText(this,"encryption clicked",Toast.LENGTH_SHORT).show()
-                R.id.logout -> Toast.makeText(this,"Logout clicked",Toast.LENGTH_SHORT).show()
+                R.id.save -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(
+                            R.id.frame,
+                            save_fragment()
+                        )
+                        .commit()
+                    Toast.makeText(this,"Save clicked",Toast.LENGTH_SHORT).show()
+                }
+                R.id.history -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(
+                            R.id.frame,
+                            history_fragment()
+                        )
+                        .commit()
+                    Toast.makeText(this,"history clicked",Toast.LENGTH_SHORT).show()
+                }
+                R.id.encryption ->{
+                    supportFragmentManager.beginTransaction()
+                        .replace(
+                            R.id.frame,
+                            encrypt_fragment()
+                        )
+                        .commit()
+                    Toast.makeText(this,"encryption clicked",Toast.LENGTH_SHORT).show()
+                }
+                R.id.logout ->{
+                    Toast.makeText(this,"Logout clicked",Toast.LENGTH_SHORT).show()
+                }
             }
             drawerlayout.closeDrawers()
             true

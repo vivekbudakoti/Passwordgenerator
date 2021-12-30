@@ -1,4 +1,4 @@
-package com.vivek.myapplication
+package com.vivek.myapplication.activities
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import android.content.Intent
 import android.widget.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.vivek.myapplication.R
 
 
 class Register : AppCompatActivity() {
@@ -47,7 +48,7 @@ class Register : AppCompatActivity() {
                 .set(user)
                 .addOnSuccessListener {
                    Toast.makeText(this,"Data Uploaded Successful",Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this,Passgen_screen::class.java))
+                    startActivity(Intent(this, Passgen_screen::class.java))
                 }
                 .addOnFailureListener {e->
                     Toast.makeText(this,"Failure. Try Again!",Toast.LENGTH_SHORT).show()
