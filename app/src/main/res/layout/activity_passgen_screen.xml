@@ -10,90 +10,17 @@
     android:fitsSystemWindows="true"
     android:id="@+id/Drawer"
     tools:openDrawer="start">
-
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Password Here:-"
-        android:textSize="30dp"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:layout_margin="15dp"
-        />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
-
-            <EditText
-                android:id="@+id/edt_pass"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Generated Pass"
-                android:textSize="30sp"
-                android:textAlignment="center"
-                android:layout_gravity="center"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                />
-
-            <ImageView
-                android:id="@+id/img_copy_clip"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/ic_baseline_content_copy_24"
-                android:layout_gravity="center"
-                />
-
-        </LinearLayout>
-
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select Password Length"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:layout_gravity="center"/>
-        <Spinner
-            android:id="@+id/spinner2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/spinner"
-            android:layout_margin="10dp"
-
-            />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_Generate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:text="Generate"
-        android:background="@drawable/rounded_corner"
-        android:textColor="@color/white"
-        />
-
-
-
-
-
-    </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 <com.google.android.material.navigation.NavigationView
 android:layout_width="wrap_content"
