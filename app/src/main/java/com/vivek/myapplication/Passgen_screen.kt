@@ -49,6 +49,8 @@ class Passgen_screen : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
 
+        navigation.setCheckedItem(R.id.generate)
+
         navigation.setNavigationItemSelectedListener {
 
 
