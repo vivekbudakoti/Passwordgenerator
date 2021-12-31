@@ -14,7 +14,7 @@ class history_fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-     var view = inflater.inflate(R.layout.fragment_encrypt, container, false)
+     var view = inflater.inflate(R.layout.fragment_history, container, false)
                 return view
     }
 
