@@ -19,6 +19,9 @@
             android:icon="@drawable/ic_baseline_enhanced_encryption_24"
             android:title="Encrypt"/>
 
+        <item android:id="@+id/decrypt"
+            android:icon="@drawable/ic_baseline_lock_open_24"
+            android:title="Decrypt"/>
 
         <item android:id="@+id/logout"
             android:icon="@drawable/ic_baseline_close_24"

@@ -12,10 +12,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.vivek.myapplication.R
-import com.vivek.myapplication.fragments.Generate_fragment
-import com.vivek.myapplication.fragments.encrypt_fragment
-import com.vivek.myapplication.fragments.history_fragment
-import com.vivek.myapplication.fragments.save_fragment
+import com.vivek.myapplication.fragments.*
 
 
 class Passgen_screen : AppCompatActivity() {
@@ -96,6 +93,15 @@ class Passgen_screen : AppCompatActivity() {
                         )
                         .commit()
                     Toast.makeText(this,"encryption clicked",Toast.LENGTH_SHORT).show()
+                }
+                R.id.decrypt ->{
+                    supportFragmentManager.beginTransaction()
+                        .replace(
+                            R.id.frame,
+                            decrypt_fragment()
+                        )
+                        .commit()
+                    Toast.makeText(this,"Decryption clicked",Toast.LENGTH_SHORT).show()
                 }
                 R.id.logout ->{
                     Toast.makeText(this,"Logout clicked",Toast.LENGTH_SHORT).show()
