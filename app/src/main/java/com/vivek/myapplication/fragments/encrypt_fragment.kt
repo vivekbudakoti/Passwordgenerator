@@ -73,18 +73,5 @@ class encrypt_fragment : Fragment() {
     }
 
 
-    fun decrypt(name:String,num:String):String?{
-        val characters_name = name.toCharArray()
-        val characters_num = num.toCharArray()
-        for(i in characters_name.indices){
-            var value_name : Int = characters_name[i].toInt() - characters_num[i].toInt()
-
-
-            val result : Int = value_name + 60
-            characters_name[i] = result.toChar()
-        }
-
-        return String(characters_name)
-    }
 
 }
