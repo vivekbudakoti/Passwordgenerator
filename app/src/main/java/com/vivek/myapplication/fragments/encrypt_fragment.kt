@@ -1,14 +1,14 @@
 package com.vivek.myapplication.fragments
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import com.vivek.myapplication.R
 
 
@@ -19,6 +19,8 @@ class encrypt_fragment : Fragment() {
     lateinit var btn_encrypted : Button
     lateinit var img_copy : ImageView
 
+    lateinit var myClipboard : ClipboardManager
+    lateinit var myClip: ClipData
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,10 +29,22 @@ class encrypt_fragment : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_encrypt, container, false)
 
+        myClipboard = activity?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+
         edt_enter = view.findViewById(R.id.edt_entertxtFE)
         edt_generated = view.findViewById(R.id.edt_generated_passFE)
         btn_encrypted= view.findViewById(R.id.btn_encrypt_generate)
         img_copy = view.findViewById(R.id.img_copyclipFE)
+
+        //for copying button in generated encryptedpassword
+        img_copy.setOnClickListener{
+            myClip = ClipData.newPlainText("text", edt_generated.text)
+            myClipboard.setPrimaryClip(myClip)
+
+            Toast.makeText(activity as Context,"Password: \"${edt_generated.text.toString()}\"\ncopied successfully",
+                Toast.LENGTH_SHORT).show()
+
+        }
 
         btn_encrypted.setOnClickListener {
            var encrptxt= encrypt(edt_enter.text.toString(),"8095678486")
