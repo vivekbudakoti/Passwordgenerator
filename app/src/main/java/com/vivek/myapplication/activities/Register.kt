@@ -25,7 +25,7 @@ class Register : AppCompatActivity() {
         edt_name = findViewById(R.id.edt_register_name)
         edt_phone = findViewById(R.id.edt_register_phone)
 
-        val sh = getSharedPreferences("MySharedPref", MODE_APPEND)
+        val sh = getSharedPreferences("MySharedPref", MODE_PRIVATE)
         val username = sh.getString("username","")
         val userId = sh.getString("userId","")
         btn_reg = findViewById(R.id.btn_reg_register)

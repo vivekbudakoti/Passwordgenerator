@@ -1,6 +1,7 @@
 package com.vivek.myapplication.activities
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +12,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
 import com.vivek.myapplication.R
 import com.vivek.myapplication.fragments.*
 
@@ -23,7 +26,7 @@ class Passgen_screen : AppCompatActivity() {
     lateinit var frameLayout: FrameLayout
 
 
-    @SuppressLint("SetTextI18n", "RestrictedApi")
+    @SuppressLint("SetTextI18n", "RestrictedApi", "WrongConstant")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,7 +107,14 @@ class Passgen_screen : AppCompatActivity() {
                     Toast.makeText(this,"Decryption clicked",Toast.LENGTH_SHORT).show()
                 }
                 R.id.logout ->{
+                    val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
+
+                    val myEdit = sharedPreferences.edit()
+                    myEdit.putBoolean("loggedin", false).commit()
                     Toast.makeText(this,"Logout clicked",Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this,MainActivity::class.java))
+                    finishAffinity()
+
                 }
             }
             drawerlayout.closeDrawers()

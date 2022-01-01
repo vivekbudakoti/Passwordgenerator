@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         //Shared prefernce Reading value of loggedin to check
-        val sh = getSharedPreferences("MySharedPref", MODE_APPEND)
+        val sh = getSharedPreferences("MySharedPref", MODE_PRIVATE)
         loginid = sh.getBoolean("loggedin",false)
 
 
@@ -87,6 +87,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("WrongConstant")
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         mAuth.signInWithCredential(credential)
