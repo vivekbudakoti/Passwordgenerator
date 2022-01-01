@@ -25,12 +25,22 @@ class Register : AppCompatActivity() {
         edt_name = findViewById(R.id.edt_register_name)
         edt_phone = findViewById(R.id.edt_register_phone)
 
+
+
         val sh = getSharedPreferences("MySharedPref", MODE_PRIVATE)
         val username = sh.getString("username","")
         val userId = sh.getString("userId","")
         btn_reg = findViewById(R.id.btn_reg_register)
 
         edt_name.setText(username,TextView.BufferType.EDITABLE)
+        if (userId != null) {
+            db.collection("PassData").document(userId).get().addOnSuccessListener {
+                val result = it["Phone Number"]
+                edt_phone.setText(result.toString(),TextView.BufferType.EDITABLE)
+            }.addOnFailureListener {
+
+            }
+        }
 
 
 
@@ -58,6 +68,8 @@ class Register : AppCompatActivity() {
 
                 var sh = getSharedPreferences("MySharedPref", MODE_PRIVATE)
                 sh.edit().putString("keyPhone",edt_phone.text.toString()).commit()
+
+
             }
 
             else{
