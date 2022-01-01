@@ -36,23 +36,31 @@ class Register : AppCompatActivity() {
 
         btn_reg.setOnClickListener {
 
-            //Firebase firestore data here
-            val user = hashMapOf(
-                "id" to userId,
-                "Phone Number" to edt_phone.text.toString(),
-            )
+            if(edt_phone.text.length == 10){
 
-         // Add a new document with a generated ID
-            db.collection("PassData")
-                .document(userId.toString())
-                .set(user)
-                .addOnSuccessListener {
-                   Toast.makeText(this,"Data Uploaded Successful",Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, Passgen_screen::class.java))
-                }
-                .addOnFailureListener {e->
-                    Toast.makeText(this,"Failure. Try Again!",Toast.LENGTH_SHORT).show()
-                }
+                //Firebase firestore data here
+                val user = hashMapOf(
+                    "id" to userId,
+                    "Phone Number" to edt_phone.text.toString(),
+                )
+
+                // Add a new document with a generated ID
+                db.collection("PassData")
+                    .document(userId.toString())
+                    .set(user)
+                    .addOnSuccessListener {
+                        Toast.makeText(this,"Data Uploaded Successful",Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, Passgen_screen::class.java))
+                    }
+                    .addOnFailureListener {e->
+                        Toast.makeText(this,"Failure. Try Again!",Toast.LENGTH_SHORT).show()
+                    }
+            }
+
+            else{
+                Toast.makeText(this,"Please enter correct 10 digit phone number",Toast.LENGTH_SHORT).show()
+            }
+
 
         }
 
