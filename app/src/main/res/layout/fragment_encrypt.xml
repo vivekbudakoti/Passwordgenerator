@@ -29,7 +29,9 @@
           android:hint="Enter Text (Only Charcters)"
           android:layout_marginRight="20dp"
           android:layout_marginLeft="20dp"
-          android:padding="10dp"/>
+          android:padding="10dp"
+          android:inputType="textFilter"
+          />
 
       <Button
           android:id="@+id/btn_encrypt_generate"

@@ -9,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.vivek.myapplication.R
+import java.security.Key
 
 
 class encrypt_fragment : Fragment() {
@@ -21,6 +23,8 @@ class encrypt_fragment : Fragment() {
 
     lateinit var myClipboard : ClipboardManager
     lateinit var myClip: ClipData
+
+    lateinit var KeyPhone : String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +51,12 @@ class encrypt_fragment : Fragment() {
         }
 
         btn_encrypted.setOnClickListener {
-           var encrptxt= encrypt(edt_enter.text.toString(),"8095678486")
+            val sharedPreferences = requireActivity().getSharedPreferences("MySharedPref",
+                AppCompatActivity.MODE_PRIVATE
+            )
+            KeyPhone = sharedPreferences.getString("keyPhone","9182374650").toString()
+
+           var encrptxt= encrypt(edt_enter.text.toString(),KeyPhone)
             edt_generated.setText("$encrptxt",TextView.BufferType.EDITABLE)
         }
 

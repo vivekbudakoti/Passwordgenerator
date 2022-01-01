@@ -55,6 +55,9 @@ class Register : AppCompatActivity() {
                     .addOnFailureListener {e->
                         Toast.makeText(this,"Failure. Try Again!",Toast.LENGTH_SHORT).show()
                     }
+
+                var sh = getSharedPreferences("MySharedPref", MODE_PRIVATE)
+                sh.edit().putString("keyPhone",edt_phone.text.toString()).commit()
             }
 
             else{

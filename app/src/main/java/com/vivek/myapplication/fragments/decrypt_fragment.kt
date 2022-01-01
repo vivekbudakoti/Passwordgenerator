@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.vivek.myapplication.R
 
 class decrypt_fragment : Fragment() {
@@ -19,6 +20,8 @@ class decrypt_fragment : Fragment() {
     lateinit var img_copyclip : ImageView
     lateinit var clipboardManager: ClipboardManager
     lateinit var myclip :ClipData
+
+    lateinit var KeyPhone : String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +46,11 @@ class decrypt_fragment : Fragment() {
         }
 
         btn_decrypt.setOnClickListener {
-            var decrptedPass = decrypt(edt_enter.text.toString(),"8095678486")
+            val sharedPreferences = requireActivity().getSharedPreferences("MySharedPref",
+                AppCompatActivity.MODE_PRIVATE
+            )
+            KeyPhone = sharedPreferences.getString("keyPhone","9182374650").toString()
+            var decrptedPass = decrypt(edt_enter.text.toString(),KeyPhone)
             edt_generate.setText("$decrptedPass",TextView.BufferType.EDITABLE)
         }
 
