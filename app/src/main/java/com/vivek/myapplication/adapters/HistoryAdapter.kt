@@ -10,7 +10,7 @@ import com.vivek.myapplication.R
 import com.vivek.myapplication.model.Hist
 import java.util.ArrayList
 
-class HistoryAdapter(val context: Context, val itemList: ArrayList<Hist>) : RecyclerView.Adapter<HistoryAdapter.DashboardViewHolder>() {
+class HistoryAdapter(val context: Context, val itemList: ArrayList<Hist>) : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_history_single, parent, false)
 
@@ -26,7 +26,7 @@ class HistoryAdapter(val context: Context, val itemList: ArrayList<Hist>) : Recy
     }
 
     override fun getItemCount(): Int {
-
+        return itemList.size
     }
 
 }
