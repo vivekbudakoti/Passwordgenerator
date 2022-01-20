@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#ffffff"
+    android:layout_margin="6dp"
+    app:cardCornerRadius="4dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
+                <EditText
+                    android:id="@+id/edt_save_forwhich"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Generated Password"
+                    android:textSize="25sp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                   android:padding="10dp"
+                    />
+                <ImageView
+                    android:id="@+id/img_hist_copy"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="30dp"
+                    android:background="@drawable/ic_baseline_content_copy_24"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
+                <EditText
+                    android:id="@+id/edt_save_pass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Generated Password"
+                    android:textSize="25sp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:padding="10dp"
+                    />
+                <ImageView
+                    android:id="@+id/img_save_copy"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="30dp"
+                    android:background="@drawable/ic_baseline_content_copy_24"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+        <ImageView
+            android:id="@+id/img_hist_delete"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/ic_baseline_delete_24"
+            android:layout_gravity="center"
+
+            />
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
