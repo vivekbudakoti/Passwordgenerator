@@ -12,15 +12,26 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.vivek.myapplication.R
+import com.vivek.myapplication.adapters.SaveAdapter
+import com.vivek.myapplication.model.Hist
+import com.vivek.myapplication.model.Save
 import java.lang.reflect.Field
 
 
 class save_fragment : Fragment() {
+
+    lateinit var  RecyclerSave :RecyclerView
+    lateinit var layoutManager: RecyclerView.LayoutManager
+    lateinit var recyclerAdapter : SaveAdapter
+
+    val SaveInfoList = arrayListOf<Save>()
 
     lateinit var floatingAddButton : FloatingActionButton
     val db = Firebase.firestore
@@ -32,6 +43,25 @@ class save_fragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_save, container, false)
+
+        RecyclerSave = view.findViewById(R.id.recyclerSave)
+        layoutManager = LinearLayoutManager(activity)
+
+        SaveInfoList.add(Save("Instagram","Vivek1234"));
+        SaveInfoList.add(Save("Instagram","Vivek1234"));
+        SaveInfoList.add(Save("Instagram","Vivek1234"));
+        SaveInfoList.add(Save("Instagram","Vivek1234"));
+        SaveInfoList.add(Save("Instagram","Vivek1234"));
+        SaveInfoList.add(Save("Instagram","Vivek1234"));
+        SaveInfoList.add(Save("Instagram","Vivek1234"));
+        SaveInfoList.add(Save("Instagram","Vivek1234"));
+        SaveInfoList.add(Save("Instagram","Vivek1234"));
+        SaveInfoList.add(Save("Instagram","Vivek1234"));
+        SaveInfoList.add(Save("Instagram","Vivek1234"));
+
+        recyclerAdapter = SaveAdapter(activity as Context,SaveInfoList)
+        RecyclerSave.adapter = recyclerAdapter
+        RecyclerSave.layoutManager = layoutManager
 
 
         val sh = activity?.getSharedPreferences("MySharedPref", AppCompatActivity.MODE_PRIVATE)

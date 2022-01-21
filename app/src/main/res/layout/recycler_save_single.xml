@@ -19,7 +19,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_margin="5dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -35,9 +36,10 @@
                     android:paddingTop="15dp"
                     android:paddingBottom="15dp"
                    android:padding="10dp"
+                    android:layout_marginLeft="10dp"
                     />
                 <ImageView
-                    android:id="@+id/img_hist_copy"
+                    android:id="@+id/img_save_copyForWhich"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginLeft="30dp"
@@ -57,12 +59,13 @@
                     android:layout_height="wrap_content"
                     android:hint="Generated Password"
                     android:textSize="25sp"
+                    android:layout_marginLeft="30dp"
                     android:paddingTop="15dp"
                     android:paddingBottom="15dp"
                     android:padding="10dp"
                     />
                 <ImageView
-                    android:id="@+id/img_save_copy"
+                    android:id="@+id/img_save_copyPass"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginLeft="30dp"
@@ -77,7 +80,7 @@
 
 
         <ImageView
-            android:id="@+id/img_hist_delete"
+            android:id="@+id/img_save_delete"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_margin="10dp"
