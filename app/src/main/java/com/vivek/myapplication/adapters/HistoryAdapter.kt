@@ -39,7 +39,7 @@ class HistoryAdapter(val context: Context, val itemList: ArrayList<Hist>) : Recy
         val item = itemList[position]
         holder.edt_history_pass.setText(item.hist_pass,TextView.BufferType.EDITABLE)
         holder.img_copy.setOnClickListener {
-            myClip =ClipData.newPlainText("text",item.hist_pass)
+            myClip =ClipData.newPlainText("text",holder.edt_history_pass.text.toString())
             myClipboard.setPrimaryClip(myClip)
 
             Toast.makeText(context,"Password: \"${holder.edt_history_pass.text.toString()}\"\ncopied successfully",
