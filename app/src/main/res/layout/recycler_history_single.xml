@@ -17,8 +17,9 @@
 
         <EditText
             android:id="@+id/edt_history"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="19"
             android:hint="Generated Password"
             android:textSize="25sp"
             android:paddingTop="15dp"

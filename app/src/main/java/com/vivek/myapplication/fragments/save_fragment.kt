@@ -55,7 +55,7 @@ class save_fragment : Fragment() {
         SaveInfoList.add(Save("Instagram","Vivek1234"));
         SaveInfoList.add(Save("Instagram","Vivek1234"));
         SaveInfoList.add(Save("Instagram","Vivek1234"));
-        SaveInfoList.add(Save("Instagram","Vivek1234"));
+        SaveInfoList.add(Save("Instagram","Vivek1234hcijsofsjfoodjsjsjcmxc fiefdj,m,dfdffsdsdadwdsffssdsfdbbdsggfbbcrgeefdcdcerezffwfwrwfdgfgdgasd"));
         SaveInfoList.add(Save("Instagram","Vivek1234"));
         SaveInfoList.add(Save("Instagram","Vivek1234"));
 
