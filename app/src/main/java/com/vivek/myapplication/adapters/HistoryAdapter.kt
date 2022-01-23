@@ -10,8 +10,12 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.vivek.myapplication.R
 
 import com.vivek.myapplication.model.Hist
@@ -21,9 +25,13 @@ class HistoryAdapter(val context: Context, val itemList: ArrayList<Hist>) : Recy
     lateinit var myClipboard : ClipboardManager
     lateinit var myClip: ClipData
 
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_history_single, parent, false)
         myClipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+
+
 
         return HistoryViewHolder(view)
     }
@@ -38,9 +46,17 @@ class HistoryAdapter(val context: Context, val itemList: ArrayList<Hist>) : Recy
     override fun onBindViewHolder(holder: HistoryAdapter.HistoryViewHolder, position: Int) {
         val item = itemList[position]
         holder.edt_history_pass.setText(item.hist_pass,TextView.BufferType.EDITABLE)
+
+        holder.img_delete.setOnClickListener {
+
+            Toast.makeText(context,"Delete clicked",
+                Toast.LENGTH_SHORT).show()
+        }
+
         holder.img_copy.setOnClickListener {
             myClip =ClipData.newPlainText("text",holder.edt_history_pass.text.toString())
             myClipboard.setPrimaryClip(myClip)
+
 
             Toast.makeText(context,"Password: \"${holder.edt_history_pass.text.toString()}\"\ncopied successfully",
                 Toast.LENGTH_SHORT).show()

@@ -31,6 +31,7 @@ class save_fragment : Fragment() {
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var recyclerAdapter : SaveAdapter
 
+
     val SaveInfoList = arrayListOf<Save>()
 
     lateinit var floatingAddButton : FloatingActionButton
@@ -44,28 +45,52 @@ class save_fragment : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_save, container, false)
 
+        val sh = activity?.getSharedPreferences("MySharedPref", AppCompatActivity.MODE_PRIVATE)
+        userId = sh?.getString("userId","").toString()
+
         RecyclerSave = view.findViewById(R.id.recyclerSave)
         layoutManager = LinearLayoutManager(activity)
 
-        SaveInfoList.add(Save("Instagram","Vivek1234"));
-        SaveInfoList.add(Save("Instagram","Vivek1234"));
-        SaveInfoList.add(Save("Instagram","Vivek1234"));
-        SaveInfoList.add(Save("Instagram","Vivek1234"));
-        SaveInfoList.add(Save("Instagram","Vivek1234"));
-        SaveInfoList.add(Save("Instagram","Vivek1234"));
-        SaveInfoList.add(Save("Instagram","Vivek1234"));
-        SaveInfoList.add(Save("Instagram","Vivek1234"));
-        SaveInfoList.add(Save("Instagram","Vivek1234hcijsofsjfoodjsjsjcmxc fiefdj,m,dfdffsdsdadwdsffssdsfdbbdsggfbbcrgeefdcdcerezffwfwrwfdgfgdgasd"));
-        SaveInfoList.add(Save("Instagram","Vivek1234"));
-        SaveInfoList.add(Save("Instagram","Vivek1234"));
+//        SaveInfoList.add(Save("Instagram","Vivek1234"));
+//        SaveInfoList.add(Save("Instagram","Vivek1234"));
+//        SaveInfoList.add(Save("Instagram","Vivek1234"));
+//        SaveInfoList.add(Save("Instagram","Vivek1234"));
+//        SaveInfoList.add(Save("Instagram","Vivek1234"));
+//        SaveInfoList.add(Save("Instagram","Vivek1234"));
+//        SaveInfoList.add(Save("Instagram","Vivek1234"));
+//        SaveInfoList.add(Save("Instagram","Vivek1234"))
+//        SaveInfoList.add(Save("Instagram","Vivek1234hcijsofsjfoodjsjsjcmxc fiefdj,m,dfdffsdsdadwdsffssdsfdbbdsggfbbcrgeefdcdcerezffwfwrwfdgfgdgasd"));
+//        SaveInfoList.add(Save("Instagram","Vivek1234"));
+//        SaveInfoList.add(Save("Instagram","Vivek1234"));
 
-        recyclerAdapter = SaveAdapter(activity as Context,SaveInfoList)
-        RecyclerSave.adapter = recyclerAdapter
-        RecyclerSave.layoutManager = layoutManager
+        db.collection("PassData").document(userId).get().addOnSuccessListener {
+
+            if(it!=null){
+                val result = it["UserData"] as ArrayList<*>
+                result.reverse()
+                for(each in result){
+                    val data = each as MutableMap<*, *>
+
+                    SaveInfoList.add(Save(
+                        data["ForWhich"] as String,
+                        data["Password"] as String))
+                    Toast.makeText(activity as Context,"${data}",Toast.LENGTH_SHORT).show()
+                    recyclerAdapter = SaveAdapter(activity as Context,SaveInfoList)
+                    RecyclerSave.adapter = recyclerAdapter
+                    RecyclerSave.layoutManager = layoutManager
+                }
+            }
 
 
-        val sh = activity?.getSharedPreferences("MySharedPref", AppCompatActivity.MODE_PRIVATE)
-        userId = sh?.getString("userId","").toString()
+
+        }.addOnFailureListener {
+            Toast.makeText(activity as Context,"Floating pressed",Toast.LENGTH_SHORT).show()
+        }
+
+
+
+
+
 
         floatingAddButton = view.findViewById(R.id.floating_button)
 
@@ -90,6 +115,8 @@ class save_fragment : Fragment() {
         dialog.show()
         btn_SaveD.setOnClickListener {
 
+
+
             val user_data = hashMapOf(
                 "ForWhich" to edt_typeD.text.toString(),
                 "Password" to edt_passD.text.toString()
@@ -99,7 +126,15 @@ class save_fragment : Fragment() {
             db.collection("PassData").document(userId).update("UserData",FieldValue.arrayUnion(user_data))
                 .addOnCompleteListener {
                 Toast.makeText(activity as Context,"Added",Toast.LENGTH_SHORT).show()
-            }
+                    SaveInfoList.add(Save(
+                        edt_typeD.text.toString()
+                      ,
+                        edt_passD.text.toString()
+                    ))
+                    SaveInfoList.reverse()
+                    recyclerAdapter.notifyDataSetChanged()
+
+                }
                 .addOnFailureListener {
                     Toast.makeText(activity as Context,"Failed",Toast.LENGTH_SHORT).show()
             }

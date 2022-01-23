@@ -11,7 +11,11 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.vivek.myapplication.R
 import com.vivek.myapplication.model.Save
 
@@ -19,6 +23,10 @@ class SaveAdapter(val context:Context,val itemlist:ArrayList<Save>): RecyclerVie
 
     lateinit var myClipboard : ClipboardManager
     lateinit var myClip: ClipData
+    val db = Firebase.firestore
+
+
+    lateinit var userId :String
 
     class SaveViewHolder(view: View): RecyclerView.ViewHolder(view){
         val edt_forwhich : EditText = view.findViewById(R.id.edt_save_forwhich)
@@ -31,6 +39,9 @@ class SaveAdapter(val context:Context,val itemlist:ArrayList<Save>): RecyclerVie
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SaveViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_save_single, parent, false)
         myClipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+
+        val sh = context.getSharedPreferences("MySharedPref", AppCompatActivity.MODE_PRIVATE)
+        userId = sh.getString("userId","")!!
 
         return SaveViewHolder(view)
     }
@@ -45,6 +56,29 @@ class SaveAdapter(val context:Context,val itemlist:ArrayList<Save>): RecyclerVie
 
             Toast.makeText(context,"For which: \"${holder.edt_forwhich.text.toString()}\"\ncopied successfully",
                 Toast.LENGTH_SHORT).show()
+        }
+
+        holder.img_delete.setOnClickListener {
+
+            val user_data : MutableMap<String, Any> = HashMap()
+            user_data["ForWhich"] = item.Forwhich
+            user_data["Password"] = item.Password
+
+
+            db.collection("PassData").document(userId).update("UserData", FieldValue.arrayRemove(user_data)).addOnSuccessListener {
+                itemlist.remove(item)
+                notifyDataSetChanged()
+                Toast.makeText(context,"Delete clicked",
+                    Toast.LENGTH_SHORT).show()
+                notifyDataSetChanged()
+            }.addOnFailureListener {
+
+                Toast.makeText(context,"failed Delete clicked",
+                    Toast.LENGTH_SHORT).show()
+                notifyDataSetChanged()
+            }
+
+
         }
         holder.img_copypass.setOnClickListener {
             myClip =ClipData.newPlainText("text",holder.edt_password.text.toString())
