@@ -51,34 +51,28 @@ class save_fragment : Fragment() {
         RecyclerSave = view.findViewById(R.id.recyclerSave)
         layoutManager = LinearLayoutManager(activity)
 
-//        SaveInfoList.add(Save("Instagram","Vivek1234"));
-//        SaveInfoList.add(Save("Instagram","Vivek1234"));
-//        SaveInfoList.add(Save("Instagram","Vivek1234"));
-//        SaveInfoList.add(Save("Instagram","Vivek1234"));
-//        SaveInfoList.add(Save("Instagram","Vivek1234"));
-//        SaveInfoList.add(Save("Instagram","Vivek1234"));
-//        SaveInfoList.add(Save("Instagram","Vivek1234"));
-//        SaveInfoList.add(Save("Instagram","Vivek1234"))
-//        SaveInfoList.add(Save("Instagram","Vivek1234hcijsofsjfoodjsjsjcmxc fiefdj,m,dfdffsdsdadwdsffssdsfdbbdsggfbbcrgeefdcdcerezffwfwrwfdgfgdgasd"));
-//        SaveInfoList.add(Save("Instagram","Vivek1234"));
-//        SaveInfoList.add(Save("Instagram","Vivek1234"));
-
         db.collection("PassData").document(userId).get().addOnSuccessListener {
 
             if(it!=null){
-                val result = it["UserData"] as ArrayList<*>
-                result.reverse()
-                for(each in result){
-                    val data = each as MutableMap<*, *>
+                if(it["UserData"]!=null){
+                    val result = it["UserData"] as ArrayList<*>
+                    if(result!=null){
+                        result.reverse()
+                        for(each in result){
+                            val data = each as MutableMap<*, *>
 
-                    SaveInfoList.add(Save(
-                        data["ForWhich"] as String,
-                        data["Password"] as String))
-                    Toast.makeText(activity as Context,"${data}",Toast.LENGTH_SHORT).show()
-                    recyclerAdapter = SaveAdapter(activity as Context,SaveInfoList)
-                    RecyclerSave.adapter = recyclerAdapter
-                    RecyclerSave.layoutManager = layoutManager
+                            SaveInfoList.add(Save(
+                                data["ForWhich"] as String,
+                                data["Password"] as String))
+                            Toast.makeText(activity as Context,"${data}",Toast.LENGTH_SHORT).show()
+                            recyclerAdapter = SaveAdapter(activity as Context,SaveInfoList)
+                            RecyclerSave.adapter = recyclerAdapter
+                            RecyclerSave.layoutManager = layoutManager
+                        }
+                    }
                 }
+
+
             }
 
 
@@ -132,7 +126,7 @@ class save_fragment : Fragment() {
                         edt_passD.text.toString()
                     ))
                     SaveInfoList.reverse()
-                    recyclerAdapter.notifyDataSetChanged()
+                //    recyclerAdapter.notifyDataSetChanged()
 
                 }
                 .addOnFailureListener {
