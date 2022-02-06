@@ -16,6 +16,7 @@ class Register : AppCompatActivity() {
     lateinit var edt_name :EditText
     lateinit var edt_phone :EditText
     val db = Firebase.firestore
+    var result: String? = null
 
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,8 +36,11 @@ class Register : AppCompatActivity() {
         edt_name.setText(username,TextView.BufferType.EDITABLE)
         if (userId != null) {
             db.collection("PassData").document(userId).get().addOnSuccessListener {
-                val result = it["Phone Number"]
-                edt_phone.setText(result.toString(),TextView.BufferType.EDITABLE)
+                if(it["Phone Number"]!=null){
+                    result = it["Phone Number"] as String
+                    edt_phone.setText(result.toString(),TextView.BufferType.EDITABLE)
+                }
+
             }.addOnFailureListener {
 
             }
@@ -54,20 +58,33 @@ class Register : AppCompatActivity() {
                     "Phone Number" to edt_phone.text.toString(),
                 )
 
-                // Add a new document with a generated ID
-                db.collection("PassData")
-                    .document(userId.toString())
-                    .set(user)
-                    .addOnSuccessListener {
-                        Toast.makeText(this,"Data Uploaded Successful",Toast.LENGTH_SHORT).show()
+                //if a previous user enters
+                if(result!=null){
+                    db.collection("PassData").document(userId.toString()).update("Phone Number","${edt_phone.text.toString()}").addOnSuccessListener {
+                        Toast.makeText(this,"Data Again Updated Successful",Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this, Passgen_screen::class.java))
-                    }
-                    .addOnFailureListener {e->
+                    }.addOnFailureListener {
                         Toast.makeText(this,"Failure. Try Again!",Toast.LENGTH_SHORT).show()
                     }
+                }
+                else{
+                    // Add a new document with a generated ID
+                    db.collection("PassData")
+                        .document(userId.toString())
+                        .set(user)
+                        .addOnSuccessListener {
+                            Toast.makeText(this,"Data Uploaded Successful",Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this, Passgen_screen::class.java))
+                        }
+                        .addOnFailureListener {e->
+                            Toast.makeText(this,"Failure. Try Again!",Toast.LENGTH_SHORT).show()
+                        }
 
-                var sh = getSharedPreferences("MySharedPref", MODE_PRIVATE)
-                sh.edit().putString("keyPhone",edt_phone.text.toString()).commit()
+                    var sh = getSharedPreferences("MySharedPref", MODE_PRIVATE)
+                    sh.edit().putString("keyPhone",edt_phone.text.toString()).commit()
+
+                }
+
 
 
             }
