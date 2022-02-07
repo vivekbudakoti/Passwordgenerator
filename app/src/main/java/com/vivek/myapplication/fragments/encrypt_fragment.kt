@@ -55,9 +55,14 @@ class encrypt_fragment : Fragment() {
                 AppCompatActivity.MODE_PRIVATE
             )
             KeyPhone = sharedPreferences.getString("keyPhone","9182374650").toString()
+            if(edt_enter.text.length>10){
+                Toast.makeText(activity as Context,"Max 10 characters are allowed!",Toast.LENGTH_SHORT).show()
+            }
+            else{
+                var encrptxt= encrypt(edt_enter.text.toString(),KeyPhone)
+                edt_generated.setText("$encrptxt",TextView.BufferType.EDITABLE)
+            }
 
-           var encrptxt= encrypt(edt_enter.text.toString(),KeyPhone)
-            edt_generated.setText("$encrptxt",TextView.BufferType.EDITABLE)
         }
 
         return view
